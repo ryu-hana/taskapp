@@ -59,8 +59,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
 
         let dateString:String = formatter.string(from: task.date)
-        cell.detailTextLabel?.text = dateString + "  カテゴリ：" +
-            (task.category != "" ? task.category : "(カテゴリなし)")
+        let categoryName:String? = task.category?.name
+        if categoryName == nil {
+            cell.detailTextLabel?.text = dateString + "  カテゴリ：(カテゴリなし)"
+        }
+        else{
+            cell.detailTextLabel?.text = dateString + "  カテゴリ：" + categoryName!
+        }
         
         return cell
     }
@@ -89,8 +94,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             try! realm.write {
                 // DBのレコード削除
                 self.realm.delete(task)
-                // Viewのレコード削除
-//                tableView.deleteRows(at: [indexPath], with: .fade)
                 // Viewを再作成
                 self.searchBarSearchButtonClicked(self.searchBar)
             }
@@ -151,7 +154,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 // 検索文字列がからの場合は、全件表示
                 self.filterdArr = Array(self.taskArray)
             } else {
-                self.filterdArr = Array(self.taskArray).filter { $0.category.contains(text) }
+                self.filterdArr = Array(self.taskArray).filter { $0.category!.name.contains(text) }
             }
             
             // 一覧の更新
