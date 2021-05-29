@@ -48,17 +48,6 @@ class InputViewController: UIViewController, UIPickerViewDelegate , UIPickerView
         contentsTextView.layer.cornerRadius = 5.0
         contentsTextView.layer.masksToBounds = true
         
-        // カテゴリ一覧がからの場合、初期値（カテゴリなし）のレコードを登録する
-        if categoryArray.count == 0 {
-            let categoryNone = Category()
-            categoryNone.id = 0
-            categoryNone.name = "-"
-            // DBの更新
-            try! realm.write {
-                self.realm.add(categoryNone, update: .modified)
-            }
-        }
-        
         // カテゴリPickerViewの初期選択
         let index = categoryArray.firstIndex(where: {$0.id == task.category?.id})
         self.categoryPickerView.selectRow((index != nil) ? index! : 0, inComponent: 0, animated: false)

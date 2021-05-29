@@ -19,14 +19,9 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GmA-dI-hr5">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" placeholder="カテゴリ検索" id="AiZ-HT-LEq">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="KcQ-b6-UDe" detailTextLabel="DHQ-Ig-eUd" style="IBUITableViewCellStyleSubtitle" id="9kW-PW-VCW">
-                                        <rect key="frame" x="0.0" y="72" width="414" height="55.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="55.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9kW-PW-VCW" id="B6b-Bm-gjL">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="55.5"/>
@@ -62,6 +57,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6xP-do-sZD">
+                        <barButtonItem key="leftBarButtonItem" title="カテゴリ選択" id="cGq-Ag-9Dy">
+                            <connections>
+                                <action selector="categoryButton:" destination="BYZ-38-t0r" id="0Sn-zG-VKc"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="npb-AN-OzJ">
                             <connections>
                                 <segue destination="D58-EN-SKy" kind="show" id="uvU-Fb-zBt"/>
@@ -69,7 +69,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="searchBar" destination="AiZ-HT-LEq" id="74B-gU-JfE"/>
                         <outlet property="tableView" destination="GmA-dI-hr5" id="U2Y-2e-3Lm"/>
                         <segue destination="D58-EN-SKy" kind="show" identifier="cellSegue" id="5qA-F4-86c"/>
                     </connections>
